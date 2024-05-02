@@ -40,10 +40,10 @@ echo ""
 # "call" used in test_all_run.sh
 for call in \
 \
-  "$GEOIPS_PACKAGES_DIR/geoips/docs/build_docs.sh $repopath $pkgname html_only" \
-  "$GEOIPS_PACKAGES_DIR/geoips/tests/utils/check_code.sh all $repopath no_flake8"
+  "$GEOIPS_PACKAGES_DIR/geoips/tests/utils/check_code.sh all $repopath" \
+  "$GEOIPS_PACKAGES_DIR/geoips/docs/build_docs.sh $repopath $pkgname html_only"
 do
-    . $GEOIPS_PACKAGES_DIR/geoips/tests/utils/test_all_run.sh
+  . $GEOIPS_PACKAGES_DIR/geoips/tests/utils/test_all_run.sh
 done
 
 . $GEOIPS_PACKAGES_DIR/geoips/tests/utils/test_all_post.sh

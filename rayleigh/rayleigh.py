@@ -13,6 +13,8 @@
 # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
 
 """
+Perform rayleigh scattering corrections.
+
 This python3-based geoips code is developed from the geoips1-based rayleigh.py.
 Input fields and associated infomation are reorganized to fit GEOIPS platform
 """
@@ -20,18 +22,10 @@ Input fields and associated infomation are reorganized to fit GEOIPS platform
 # Python Standard Libraries
 import logging
 
-LOG = logging.getLogger(__name__)
-
 # Installed Libraries
 import numpy as np
 
-
-# GeoIPS Libraries
-# from geoips.lib.librayleigh import rayleigh    #this is the fortrain-based rayleigh correction lib.
-# from geoips.utils.log_setup import interactive_log_setup
-
-
-# log = interactive_log_setup(logging.getLogger(__name__))
+LOG = logging.getLogger(__name__)
 
 
 ##################################################################
@@ -93,7 +87,7 @@ LOG.info("finishing setup selection of sensor channels %s", ahi_var_map)
 
 
 def rayleigh(xobj):
-    """Using xarray variables implemented in geoips"""
+    """Perform rayleigh using xarray variables implemented in geoips."""
     source_name = xobj.source_name
     platform_name = xobj.platform_name
     start_datetime = xobj.start_datetime
@@ -136,7 +130,8 @@ def rayleigh(xobj):
     except KeyError:
         pass
 
-    # Moving IR to an optional argument rather than joining it to the rest of the variables
+    # Moving IR to an optional argument rather than joining it to the
+    # rest of the variables
     #       for abi and ahi only
     try:
         lwir = xobj[var_map["IR"].strip()]
@@ -167,18 +162,25 @@ def rayleigh(xobj):
         LOG.info("    Going to calculate RelAzimuth")
         dorelazm = True
 
-    # Apply satsuncalc package to estimate satellite_zenith_angle, solar_zenith_angle and relative Azimuth if they are not available
-    #       For VIIRS, Modis, AHI and ABI, these variables are present after output from their readers.
-    #       Thus, the following call of satsuncalc is not really needed, but included for a complete code.
-    #       However, if satsuncalc is used, you must first install this package, which requires another package:
-    #       pass_prediction.  Thus, pass_prediction package should be also installed.
-    # Note:  since pass_predition will not be installed for geoips for now, the following section is commented out.
-    """ 
+    # Apply satsuncalc package to estimate satellite_zenith_angle,
+    #   solar_zenith_angle and relative Azimuth if they are not available
+    #   For VIIRS, Modis, AHI and ABI, these variables are present after
+    #   output from their readers. Thus, the following call of satsuncalc
+    #   is not really needed, but included for a complete code.
+    #   However, if satsuncalc is used, you must first install this package,
+    #   which requires another package: pass_prediction.  Thus,
+    #   pass_prediction package should be also installed.
+    #
+    # Note:  since pass_predition will not be installed for geoips for now,
+    #   the following section is commented out.
+    """
     if dosatzen or dosunzen or dorelazm:
-        print ('call the satsuncalc.py in the satsuncalc package : waiting for pass_prediction package')
+        print ('call the satsuncalc.py in the satsuncalc package : ')
+        print ('waiting for pass_prediction package')
         shell()
         from satsuncalc import satsuncalc
-        sat_zenith, sat_azimuth, sun_zenith, sun_azimuth, rel_azimuth, sunglint, scatter = \
+        sat_zenith, sat_azimuth, sun_zenith, sun_azimuth, \
+            rel_azimuth, sunglint, scatter = \
             satsuncalc.satsuncalc(platform_name,
                        start_datetime,
                        xobj['longitude'],
@@ -197,7 +199,8 @@ def rayleigh(xobj):
     if not dorelazm:
         if "SATAZM" in var_map.keys() and "SUNAZM" in var_map.keys():
             LOG.info(
-                "    Using satellite_azimuth_angle and solar_azimuth_angle from input xobj to get RelAzimuth"
+                "    Using satellite_azimuth_angle and solar_azimuth_angle "
+                "from input xobj to get RelAzimuth"
             )
             delta = xobj[var_map["SUNAZM"]] - xobj[var_map["SATAZM"]]
             delta = np.where(delta >= 360, delta - 360, delta)
@@ -212,7 +215,8 @@ def rayleigh(xobj):
     save_mask = rad_data.mask
     LOG.info(str(var_names) + " len(rad_data) " + str(rad_data.shape))
 
-    # Build a list of the arguments to be passed to the rayleigh correction fortran routine
+    # Build a list of the arguments to be passed to the rayleigh correction
+    # fortran routine
     rayleigh_args = [
         source_name,
         platform_name,
@@ -232,12 +236,15 @@ def rayleigh(xobj):
         pass
 
     # rad_data(nx,ny,chans):  chans(Red, Grn, Blu)
-    # call the fortrain-based raileigh function, which is not same rayleigh function defined in this ocde.
-    # subroutine rayleigh(nchans, lines, samples, sensor, platform, chan_names, jday, &
-    #                radiances, sat_zen, sun_zen, rel_azm, infrared, reflectances)
+    # call the fortrain-based raileigh function, which is not same rayleigh
+    # function defined in this ocde.
+    # subroutine rayleigh(nchans, lines, samples, sensor, platform,
+    #       chan_names, jday, &
+    #       radiances, sat_zen, sun_zen, rel_azm, infrared, reflectances)
     # Python call signature:
-    #   reflectances = rayleigh(nchans, lines, samples, sensor, platform, chan_names,
-    #                           jday, radiances, sat_zen, sun_zen, rel_azm)
+    #   reflectances = rayleigh(nchans, lines, samples, sensor,
+    #       platform, chan_names,
+    #       jday, radiances, sat_zen, sun_zen, rel_azm)
 
     from rayleigh.lib.librayleigh import (
         rayleigh,

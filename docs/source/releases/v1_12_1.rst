@@ -1,0 +1,89 @@
+ | # # # Distribution Statement A. Approved for public release. Distribution unlimited.
+ | # # #
+ | # # # Author:
+ | # # # Naval Research Laboratory, Marine Meteorology Division
+ | # # #
+ | # # # This program is free software: you can redistribute it and/or modify it under
+ | # # # the terms of the NRLMMD License included with this program. This program is
+ | # # # distributed WITHOUT ANY WARRANTY; without even the implied warranty of
+ | # # # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the included license
+ | # # # for more details. If you did not receive the license, for more information see:
+ | # # # https://github.com/U-S-NRL-Marine-Meteorology-Division/
+
+Version 1.12.1 (2024-02-15)
+***************************
+
+* Installation updates
+
+  * Return non-zero from build.py on fail
+* Documentation updates
+
+  * Update to standard CHANGELOG.rst
+  * Add build_docs.sh call to test_all.sh
+* Black updates to rayleigh.py
+* Add release note for v1.12.1
+
+Formatting Updates
+==================
+
+Black updates to rayleigh.py
+----------------------------
+
+::
+
+  modified: rayleigh/rayleigh.py
+
+Installation Updates
+====================
+
+Return non-zero from build.py on fail
+-------------------------------------
+
+Ensure build.py returns non-zero if the make fails!  Otherwise pip will think
+it completed successfully!
+
+Also ensure pyproject.toml includes "numpy" as build dependency for fortran-based
+builds!
+
+Also ensure lib and inc are included in package_includes in pyproject.toml!
+
+::
+
+  modified: build.py
+  modified: pyproject.toml
+
+Documentation Updates
+=====================
+
+Update to standard CHANGELOG.rst
+--------------------------------
+
+No option now - update the correct release note.
+
+::
+
+  modified: CHANGELOG.rst
+
+
+Add build_docs.sh call to test_all.sh
+-------------------------------------
+
+::
+
+  modified: tests/test_all.sh
+
+Release Process
+===============
+
+Add release note for v1.12.1
+----------------------------
+
+*From GEOIPS#458: 2024-02-09, 1.12.1 release*
+
+All updates until the next release (v1.12.1) will be included in
+this release note.
+
+::
+
+  modified: docs/source/releases/v1.12.1.rst
+  modified: docs/source/releases/index.rst
