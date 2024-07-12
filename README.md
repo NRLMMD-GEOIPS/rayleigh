@@ -27,7 +27,10 @@ scattering corrections.
 System Requirements
 ---------------------
 
-* geoips >= 1.12.0
+* geoips >= 1.12.1
+* fortran_utils >= 1.12.1
+* ancildat >= 1.12.1
+* rayleigh >= 1.12.1
 * Test data repos contained in $GEOIPS_TESTDATA_DIR for tests to pass.
 
 IF REQUIRED: Install base geoips package
@@ -41,9 +44,7 @@ within the geoips source repo documentation:
 Install rayleigh package
 ----------------------------
 ```bash
-    # Assuming you followed the fully supported installation,
-    # using $GEOIPS_PACKAGES_DIR and $GEOIPS_CONFIG_FILE:
-    source $GEOIPS_CONFIG_FILE
+    # Ensure GeoIPS environment is enabled.
     git clone https://github.com/NRLMMD-GEOIPS/fortran_utils $GEOIPS_PACKAGES_DIR/fortran_utils
     git clone https://github.com/NRLMMD-GEOIPS/ancildat $GEOIPS_PACKAGES_DIR/ancildat
     git clone https://github.com/NRLMMD-GEOIPS/rayleigh $GEOIPS_PACKAGES_DIR/rayleigh
