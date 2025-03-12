@@ -7,9 +7,11 @@ module rayleigh_constants
     use config
     use viirs_rayleigh_constants
     use modis_rayleigh_constants
+    use geokompsat_ami_rayleigh_constants
     use himawari8_ahi_rayleigh_constants
     use goes16_abi_rayleigh_constants
     use goes17_abi_rayleigh_constants
+    use meteosat12_fci_rayleigh_constants
     use rayleigh_chan_constants
     use string_operations
     implicit none
@@ -46,7 +48,7 @@ module rayleigh_constants
         !              share/geoalgs_constants.f90) defining which platform's
         !              constants are returned
         !   chan_names - an array of channel names, each a string of up to
-        !                length name_size defining which channel's constants are 
+        !                length name_size defining which channel's constants are
         !                to be returned for the given sensor.
         !
         ! OUTPUTS:
@@ -58,7 +60,7 @@ module rayleigh_constants
         !                   chan_consts(channelName)(constantName)
         !                 Constants available for each channel are:
         !                   colorgun - Name of the color gun that the channel's
-        !                              data will be placed in to create a 
+        !                              data will be placed in to create a
         !                              TrueColor image.
         !                              ("red", "green", or "blue")
         !                   chname - Name of the channel as seen in the original
@@ -101,6 +103,18 @@ module rayleigh_constants
                 allocate(temp_consts(nchans))
                 temp_names = himawari8_ahi_chan_names
                 temp_consts = himawari8_ahi_chan_consts
+            case ('ami')
+                nchans = size(geokompsat_ami_chan_names, 1)
+                allocate(temp_names(nchans))
+                allocate(temp_consts(nchans))
+                temp_names = geokompsat_ami_chan_names
+                temp_consts = geokompsat_ami_chan_consts
+            case ('fci')
+                nchans = size(meteosat12_fci_chan_names, 1)
+                allocate(temp_names(nchans))
+                allocate(temp_consts(nchans))
+                temp_names = meteosat12_fci_chan_names
+                temp_consts = meteosat12_fci_chan_consts
             case ('abi')
                 if (trim(adjustl(platform)) .eq. 'goes16') then
                     nchans = size(goes16_abi_chan_names, 1)

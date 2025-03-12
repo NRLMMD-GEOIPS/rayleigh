@@ -37,13 +37,13 @@ endif
 F2PCFLAGS = $(F2P_COMPILER_FLAGS) --opt="-O3" $(FLIBS) $(FINCS)
 
 #Libraries with Python bindings
-$(LIB)/librayleigh.so: rayleigh.f90 $(LIB)/process_color.o $(LIB)/rayleigh_constants.o $(LIB)/modis_rayleigh_constants.o $(LIB)/viirs_rayleigh_constants.o $(LIB)/himawari8_ahi_rayleigh_constants.o $(LIB)/goes16_abi_rayleigh_constants.o $(LIB)/goes17_abi_rayleigh_constants.o $(LIB)/rayleigh_chan_constants.o $(FORTRAN_UTILS_LIB)/config.o $(FORTRAN_UTILS_LIB)/prettyprint.o $(FORTRAN_UTILS_LIB)/string_operations.o
+$(LIB)/librayleigh.so: rayleigh.f90 $(LIB)/process_color.o $(LIB)/rayleigh_constants.o $(LIB)/modis_rayleigh_constants.o $(LIB)/viirs_rayleigh_constants.o $(LIB)/himawari8_ahi_rayleigh_constants.o $(LIB)/geokompsat_ami_rayleigh_constants.o $(LIB)/meteosat12_fci_rayleigh_constants.o $(LIB)/goes16_abi_rayleigh_constants.o $(LIB)/goes17_abi_rayleigh_constants.o $(LIB)/rayleigh_chan_constants.o $(FORTRAN_UTILS_LIB)/config.o $(FORTRAN_UTILS_LIB)/prettyprint.o $(FORTRAN_UTILS_LIB)/string_operations.o
 
-$(LIB)/librayleigh_constants.so: rayleigh_constants.f90 $(LIB)/modis_rayleigh_constants.o $(LIB)/viirs_rayleigh_constants.o $(LIB)/himawari8_ahi_rayleigh_constants.o $(LIB)/goes16_abi_rayleigh_constants.o $(LIB)/goes17_abi_rayleigh_constants.o $(LIB)/rayleigh_chan_constants.o $(FORTRAN_UTILS_LIB)/config.o $(FORTRAN_UTILS_LIB)/prettyprint.o $(FORTRAN_UTILS_LIB)/string_operations.o
+$(LIB)/librayleigh_constants.so: rayleigh_constants.f90 $(LIB)/modis_rayleigh_constants.o $(LIB)/viirs_rayleigh_constants.o $(LIB)/himawari8_ahi_rayleigh_constants.o $(LIB)/geokompsat_ami_rayleigh_constants.o $(LIB)/meteosat12_fci_rayleigh_constants.o $(LIB)/goes16_abi_rayleigh_constants.o $(LIB)/goes17_abi_rayleigh_constants.o $(LIB)/rayleigh_chan_constants.o $(FORTRAN_UTILS_LIB)/config.o $(FORTRAN_UTILS_LIB)/prettyprint.o $(FORTRAN_UTILS_LIB)/string_operations.o
 
 $(LIB)/process_color.o: process_color.f90 $(FORTRAN_UTILS_INC)/config.mod $(INC)/rayleigh_constants.mod $(FORTRAN_UTILS_LIB)/prettyprint.o
 
-$(LIB)/rayleigh_constants.o: rayleigh_constants.f90 $(LIB)/modis_rayleigh_constants.o $(LIB)/viirs_rayleigh_constants.o $(LIB)/himawari8_ahi_rayleigh_constants.o $(LIB)/goes16_abi_rayleigh_constants.o $(LIB)/goes17_abi_rayleigh_constants.o $(LIB)/rayleigh_chan_constants.o $(FORTRAN_UTILS_LIB)/config.o $(FORTRAN_UTILS_LIB)/prettyprint.o $(FORTRAN_UTILS_LIB)/string_operations.o
+$(LIB)/rayleigh_constants.o: rayleigh_constants.f90 $(LIB)/modis_rayleigh_constants.o $(LIB)/viirs_rayleigh_constants.o $(LIB)/himawari8_ahi_rayleigh_constants.o $(LIB)/geokompsat_ami_rayleigh_constants.o $(LIB)/meteosat12_fci_rayleigh_constants.o $(LIB)/goes16_abi_rayleigh_constants.o $(LIB)/goes17_abi_rayleigh_constants.o $(LIB)/rayleigh_chan_constants.o $(FORTRAN_UTILS_LIB)/config.o $(FORTRAN_UTILS_LIB)/prettyprint.o $(FORTRAN_UTILS_LIB)/string_operations.o
 
 $(INC)/rayleigh_constants.mod: $(LIB)/rayleigh_constants.o
 
@@ -52,6 +52,10 @@ $(LIB)/modis_rayleigh_constants.o: modis_rayleigh_constants.f90 $(INC)/rayleigh_
 $(LIB)/viirs_rayleigh_constants.o: viirs_rayleigh_constants.f90 $(INC)/rayleigh_chan_constants.mod
 
 $(LIB)/himawari8_ahi_rayleigh_constants.o: himawari8_ahi_rayleigh_constants.f90 $(INC)/rayleigh_chan_constants.mod
+
+$(LIB)/geokompsat_ami_rayleigh_constants.o: geokompsat_ami_rayleigh_constants.f90 $(INC)/rayleigh_chan_constants.mod
+
+$(LIB)/meteosat12_fci_rayleigh_constants.o: meteosat12_fci_rayleigh_constants.f90 $(INC)/rayleigh_chan_constants.mod
 
 $(LIB)/goes16_abi_rayleigh_constants.o: goes16_abi_rayleigh_constants.f90 $(INC)/rayleigh_chan_constants.mod
 
