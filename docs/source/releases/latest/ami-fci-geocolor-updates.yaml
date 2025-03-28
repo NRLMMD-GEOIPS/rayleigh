@@ -1,0 +1,44 @@
+enhancement:
+- description: |
+    Updated this package to support rayleigh scattering for data sourced from GK2A AMI
+    and MTGI1 FCI. Includes new lookup tables needed for this scattering computation.
+    Updated makefiles and fortran code to include these new updates.
+  files:
+    added:
+      - dat/ami/AMI_GEOKOMPSAT-2A_rayleigh_ch01.dat
+      - dat/ami/AMI_GEOKOMPSAT-2A_rayleigh_ch01_GeoIPS.dat
+      - dat/ami/AMI_GEOKOMPSAT-2A_rayleigh_ch02.dat
+      - dat/ami/AMI_GEOKOMPSAT-2A_rayleigh_ch02_GeoIPS.dat
+      - dat/ami/AMI_GEOKOMPSAT-2A_rayleigh_ch03.dat
+      - dat/ami/AMI_GEOKOMPSAT-2A_rayleigh_ch03_GeoIPS.dat
+      - dat/ami/AMI_GEOKOMPSAT-2A_rayleigh_ch04.dat
+      - dat/ami/AMI_GEOKOMPSAT-2A_rayleigh_ch04_GeoIPS.dat
+      - dat/ami/BLU.dat
+      - dat/ami/GRN.dat
+      - dat/ami/RED.dat
+      - dat/ami/VNIR.dat
+      - dat/ami/rearrange.py
+      - dat/fci/BLU.dat
+      - dat/fci/FCI_MTG1_rayleigh_ch01_GeoIPS.dat
+      - dat/fci/FCI_MTG1_rayleigh_ch01_v1.dat
+      - dat/fci/FCI_MTG1_rayleigh_ch02_GeoIPS.dat
+      - dat/fci/FCI_MTG1_rayleigh_ch02_v1.dat
+      - dat/fci/FCI_MTG1_rayleigh_ch03_GeoIPS.dat
+      - dat/fci/FCI_MTG1_rayleigh_ch03_v1.dat
+      - dat/fci/FCI_MTG1_rayleigh_ch04_GeoIPS.dat
+      - dat/fci/FCI_MTG1_rayleigh_ch04_v1.dat
+      - dat/fci/GRN.dat
+      - dat/fci/RED.dat
+      - dat/fci/VNIR.dat
+      - dat/fci/rearrange.py
+      - src/geokompsat_ami_rayleigh_constants.f90
+      - src/meteosat12_fci_rayleigh_constants.f90
+    modified:
+      - rayleigh/rayleigh.py
+      - src/makefile
+      - src/module.mk
+      - src/rayleigh_constants.f90
+  related-issue:
+    number: 0
+    repo_url: ''
+  title: 'Support GK2A AMI and MTGI1 FCI Rayleigh Scattering'
