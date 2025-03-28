@@ -65,11 +65,33 @@ ahi_var_map = {
     "SATAZM": "satellite_azimuth_angle",
     "SUNAZM": "solar_azimuth_angle",
 }
+fci_var_map = {
+    "BLU": "B01Rad",
+    "GRN": "B02Rad",
+    "RED": "B03Rad",
+    "NIR": "B04Rad",
+    "IR": "B13BT ",
+    "SATZEN": "satellite_zenith_angle",
+    "SUNZEN": "solar_zenith_angle",
+    "SATAZM": "satellite_azimuth_angle",
+    "SUNAZM": "solar_azimuth_angle",
+}
 abi_var_map = {
     "BLU": "B01Rad",
     "RED": "B02Rad",
     "NIR": "B03Rad",
     "IR": "B13BT ",
+    "SATZEN": "satellite_zenith_angle",
+    "SUNZEN": "solar_zenith_angle",
+    "SATAZM": "satellite_azimuth_angle",
+    "SUNAZM": "solar_azimuth_angle",
+}
+ami_var_map = {
+    "BLU": "VI004Rad",
+    "GRN": "VI005Rad",
+    "RED": "VI006Rad",
+    "NIR": "VI008Rad",
+    "IR": "IR105BT ",
     "SATZEN": "satellite_zenith_angle",
     "SUNZEN": "solar_zenith_angle",
     "SATAZM": "satellite_azimuth_angle",
@@ -81,6 +103,8 @@ sensor_var_maps = {
     "modis": modis_var_map,
     "ahi": ahi_var_map,
     "abi": abi_var_map,
+    "ami": ami_var_map,
+    "fci": fci_var_map,
 }
 
 LOG.info("finishing setup selection of sensor channels %s", ahi_var_map)
@@ -89,7 +113,12 @@ LOG.info("finishing setup selection of sensor channels %s", ahi_var_map)
 def rayleigh(xobj):
     """Perform rayleigh using xarray variables implemented in geoips."""
     source_name = xobj.source_name
-    platform_name = xobj.platform_name
+    if source_name == "fci":
+        platform_name = "meteosat12"
+    elif source_name == "ami":
+        platform_name = "geokompsat"
+    else:
+        platform_name = xobj.platform_name
     start_datetime = xobj.start_datetime
 
     try:
@@ -236,7 +265,7 @@ def rayleigh(xobj):
         pass
 
     # rad_data(nx,ny,chans):  chans(Red, Grn, Blu)
-    # call the fortrain-based raileigh function, which is not same rayleigh
+    # call the fortran-based rayleigh function, which is not same rayleigh
     # function defined in this ocde.
     # subroutine rayleigh(nchans, lines, samples, sensor, platform,
     #       chan_names, jday, &
