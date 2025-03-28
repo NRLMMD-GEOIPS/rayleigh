@@ -1,9 +1,9 @@
 #!/bin/env python
 
-for fname in ['ch01','ch02','ch03','ch04']:
+for fname in ["ch01", "ch02", "ch03", "ch04"]:
 
-    fp = open('AMI_GEOKOMPSAT-2A_rayleigh_'+fname+'.dat','r')
-    outf = open('AMI_GEOKOMPSAT-2A_rayleigh_'+fname+'_GeoIPS.dat','w')
+    fp = open("AMI_GEOKOMPSAT-2A_rayleigh_" + fname + ".dat", "r")
+    outf = open("AMI_GEOKOMPSAT-2A_rayleigh_" + fname + "_GeoIPS.dat", "w")
 
     newline = []
 
@@ -12,8 +12,8 @@ for fname in ['ch01','ch02','ch03','ch04']:
         if len(newline) == 3:
             newline = []
         elif len(newline) == 19:
-            outf.write(' '.join(newline)+'\n')
+            outf.write(" ".join(newline) + "\n")
             newline = []
         elif len(newline) == 37:
-            outf.write(' '.join(newline)+'\n')
+            outf.write(" ".join(newline) + "\n")
             newline = []
