@@ -13,9 +13,9 @@
 | ⚠️ **Warning** |
 | -------------- |
 | This package is an early release and should be expected to change in the future.
-| We don’t expect the functionality to change in significant ways. We intend to improve
-| the installation process, consolidate packages and, potentially, convert Fortran routines
-| to Python to avoid complexity in installation. |
+We don’t expect the functionality to change in significant ways. We intend to improve
+the installation process, consolidate packages and, potentially, convert Fortran routines
+to Python to avoid complexity in installation. |
 
 rayleigh GeoIPS Plugin
 ======================
