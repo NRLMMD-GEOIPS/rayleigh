@@ -9,11 +9,6 @@ geoips/commandline/ancillary_info/cmd_instructions.json
 geoips/commandline/ancillary_info/alias_mapping.json
 
 ####################################################
-# Fortran specific .gitignore options:
-
-*.mod
-
-####################################################
 # GeoIPS Environment specific .gitignore options:
 
 # auto-generated release note files, all release note information
