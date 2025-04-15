@@ -1,5 +1,8 @@
 #!/bin/env python
 
+# # # This source code is subject to the license referenced at
+# # # https://github.com/NRLMMD-GEOIPS.
+
 for fname in ["ch01", "ch02", "ch03", "ch04"]:
 
     fp = open("AMI_GEOKOMPSAT-2A_rayleigh_" + fname + ".dat", "r")
