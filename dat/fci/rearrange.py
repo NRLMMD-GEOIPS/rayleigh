@@ -1,5 +1,8 @@
 #!/bin/env python
 
+# # # This source code is subject to the license referenced at
+# # # https://github.com/NRLMMD-GEOIPS.
+
 for fname in ["ch01", "ch02", "ch03", "ch04"]:
 
     fp = open("FCI_MTG1_rayleigh_" + fname + "_v1.dat", "r")
