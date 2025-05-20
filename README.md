@@ -1,10 +1,14 @@
     # # # This source code is subject to the license referenced at
     # # # https://github.com/NRLMMD-GEOIPS.
 
+| ⚠️ **Warning** |
+| -------------- |
+| This package is an early release and should be expected to change in the future. We don’t expect the functionality to change in significant ways. We intend to improve the installation process, consolidate packages and, potentially, convert Fortran routines to Python to avoid complexity in installation. |
+
 rayleigh GeoIPS Plugin
 ======================
 
-The rayleigh package is a GeoIPS-compatible plugin, intended to be used within the GeoIPS ecosystem.
+The rayleigh package is a GeoIPS-compatible plugin intended to be used within the GeoIPS ecosystem.
 Please see the
 [GeoIPS Documentation](https://github.com/NRLMMD-GEOIPS/geoips#readme)
 for more information on the GeoIPS plugin architecture and base infrastructure.
