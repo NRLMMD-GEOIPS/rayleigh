@@ -1,0 +1,12 @@
+bug fix:
+- title: 'Update flake8 configuration to ignore dat rearranger lint errors'
+  description: >
+    The dat rearranger python scripts were causing flake8 linting errors due to missing
+    public docstrings; this adds them to the `per-file-ignores` so that they do not
+    cause CI to fail.
+  files:
+    modified:
+    - '.flake8'
+  related-issue:
+    number: 1510
+    repo_url: 'https://github.com/NRLMMD-GEOIPS/geoips/'
